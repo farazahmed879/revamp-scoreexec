@@ -1,27 +1,21 @@
-import React, { useState } from 'react';
-import { Layout, Menu, Button, Drawer, Switch, ConfigProvider } from 'antd';
-import {
-  ProjectOutlined,
-  UserOutlined,
-  HomeOutlined,
-  TeamOutlined,
-  CrownOutlined,
-  InfoCircleOutlined,
-  MenuOutlined,
-  CloseCircleOutlined,
-  BulbOutlined,
-} from '@ant-design/icons';
-import 'antd/dist/reset.css';
+import React, { useState } from "react";
+//import { ConfigProvider } from 'antd';
+import Routing from "./router";
+import { BrowserRouter } from "react-router-dom";
+//import Sidebar from './pages/Sidbar/sidebar';
 
-const { Sider } = Layout;
-
-const App = () => { 
-  const [darkMode, setDarkMode] = useState(false);
+const App = () => {
+  //const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <ConfigProvider theme={darkMode ? 'dark' : 'light'}>
-      <>WQrokds</>
-    </ConfigProvider>
+    <BrowserRouter>
+      <Routing />
+    </BrowserRouter>
+
+    // <ConfigProvider theme={darkMode ? 'dark' : 'light'}>
+    //   <>WQrokds</>
+    // </ConfigProvider>
+    //<Sidebar/>
   );
 };
 
