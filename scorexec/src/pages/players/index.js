@@ -80,7 +80,6 @@ const Players = () => {
     },
   ];
 
-  const AddButton = () => {};
   return (
     <>
       <CustomButton></CustomButton>
