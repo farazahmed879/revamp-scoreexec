@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-} from "@ant-design/icons";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
-import DrawerSideBar from "../../Sidbar/sidebar";
 import { Route, Routes } from "react-router-dom";
-import Team from '../../teams'
+import Team from "../../teams";
 import Players from "../../players";
 import AddPlayerForm from "../../players/create-edit-player";
-const { Header,  Content } = Layout;
+import DrawerSideBar from "../../../components/common/custom-sidebar/sidebar";
+const { Header, Content } = Layout;
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -30,20 +27,23 @@ const App = () => {
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
             style={{
-              fontSize: "16px",
+              fontSize: "16px" ,
               width: 64,
               height: 64,
-              backgroundColor:'transparent',
-              '&:hover': {
-                backgroundColor: 'initial'}
+              backgroundColor: "transparent",
+              "&:hover": {
+                backgroundColor: "initial",
+              },
             }}
           />
         </Header>
         <Content
-          style={{
-            margin: "24px 16px",
+           style={{
+            overflow: 'auto',
+            height: '50vh',
+            margin: '24px 16px',
             padding: 24,
-            minHeight: 500,
+            minHeight: 280,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
           }}
@@ -51,7 +51,7 @@ const App = () => {
           <Routes>
             <Route path="team" element={<Team />} />
             <Route path="player" element={<Players />} />
-             <Route path="create-player" element={<AddPlayerForm />} /> 
+            <Route path="create-player" element={<AddPlayerForm />} />
           </Routes>
         </Content>
       </Layout>

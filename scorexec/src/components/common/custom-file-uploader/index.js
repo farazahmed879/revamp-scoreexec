@@ -1,6 +1,7 @@
 import React from "react";
 import CustomButton from "../custom-button";
-import CustomOutlinedIcon from "../icons/custom-outlined";
+import CustomOutlinedIcon from "../custom-icons/custom-outlined";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { Upload } from "antd";
 const CustomFileUploader = ({
   fileList = [],
@@ -10,7 +11,27 @@ const CustomFileUploader = ({
   multiple = false,
   buttontitle = "Upload",
   beforeUpload = () => false,
+  loading = false,
 }) => {
+  const uploadButton = (
+    <button
+      style={{
+        border: 0,
+        background: "none",
+      }}
+      type="button"
+    >
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </button>
+  );
+
   return (
     <Upload
       fileList={fileList}
@@ -20,7 +41,11 @@ const CustomFileUploader = ({
       listType={listType}
       multiple={multiple}
     >
-      <CustomButton  icon={<CustomOutlinedIcon/>}  >{buttontitle}</CustomButton>
+      {listType == "picture" ? (
+        <CustomButton icon={<CustomOutlinedIcon />}>{buttontitle}</CustomButton>
+      ) : (
+        uploadButton
+      )}
     </Upload>
   );
 };

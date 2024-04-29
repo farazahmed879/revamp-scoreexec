@@ -1,13 +1,20 @@
-import React from "react";
-import AddPlayerForm from "./create-edit-player";
-import CustomGrid from "../../components/common/custom-grid";
-import { Space, Tag } from "antd";
-import CustomTag from "../../components/common/custom-tag";
-import CustomButton from "../../components/common/custom-button";
 
-//import AdvancedFilter from '../players/info';
+import React, { useState } from "react";
+//import AddPlayerForm from "./create-edit-player";
+import CustomGrid from "../../components/common/custom-grid";
+import CustomButton from "../../components/common/custom-button";
+import CustomTag from "../../components/common/custom-tag";
+import { Link } from "react-router-dom";
+import CustomSpace from "../../components/common/custom-space";
+
 
 const Players = () => {
+  const [showForm, setShowForm] = useState(false); //show or no show form
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
   const columns = [
     {
       title: "Name",
@@ -49,10 +56,10 @@ const Players = () => {
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <Space size="middle">
+        <CustomSpace size="middle">
           <a>Invite {record.name}</a>
           <a>Delete</a>
-        </Space>
+        </CustomSpace>
       ),
     },
   ];
@@ -82,10 +89,12 @@ const Players = () => {
 
   return (
     <>
-      <CustomButton></CustomButton>
-
+      <div style={{ textAlign: "right", marginBottom: "10px" }}>
+      <Link to="/create-player">
+        <CustomButton onClick={toggleForm}>Add New Player</CustomButton> 
+        </Link>
+      </div>
       <CustomGrid columns={columns} data={data} />
-      <AddPlayerForm />
     </>
   );
 };
