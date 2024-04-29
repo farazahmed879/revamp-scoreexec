@@ -1,16 +1,11 @@
-
-import React, { useState } from "react";
-//import AddPlayerForm from "./create-edit-player";
-import CustomGrid from "../../components/common/custom-grid";
-import CustomButton from "../../components/common/custom-button";
-import CustomTag from "../../components/common/custom-tag";
+import React , { useState }from "react";
 import { Link } from "react-router-dom";
+import CustomButton from "../../components/common/custom-button";
+import CustomGrid from "../../components/common/custom-grid";
 import CustomSpace from "../../components/common/custom-space";
-
-
-const Players = () => {
-  const [showForm, setShowForm] = useState(false); //show or no show form
-
+import CustomTag from "../../components/common/custom-tag";
+const Team = () => {
+    const [showForm, setShowForm] = useState(false);
   const toggleForm = () => {
     setShowForm(!showForm);
   };
@@ -87,17 +82,13 @@ const Players = () => {
     },
   ];
 
-  return (
-    <>
-      <div style={{ textAlign: "right", marginBottom: "10px" }}>
-      <Link to="/create-player">
-        <CustomButton onClick={toggleForm}>Add New Player</CustomButton> 
-        </Link>
-      </div>
-      <CustomGrid columns={columns} data={data} />
-    </>
-  );
+  return <>
+  <div style={{ textAlign: "right", marginBottom: "10px" }}>
+  <Link to="/create-team">
+    <CustomButton onClick={toggleForm}>Add</CustomButton> 
+    </Link>
+  </div>
+  <CustomGrid columns={columns} data={data} />
+</>
 };
-
-export default Players;
-
+export default Team
