@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CustomButton from "../../components/common/custom-button";
 import CustomGrid from "../../components/common/custom-grid";
 import CustomSpace from "../../components/common/custom-space";
-import CustomTag from "../../components/common/custom-tag";
+//import CustomTag from "../../components/common/custom-tag";
 
 const Matches = () => {
     const [showForm, setShowForm] = useState(false); //show or no show form
@@ -50,7 +50,7 @@ const Matches = () => {
     return (
         <>
           <div style={{ textAlign: "right", marginBottom: "10px" }}>
-          <Link to="/matches">
+          <Link to="/create-match">
             <CustomButton onClick={toggleForm}>Add New Match</CustomButton> 
             </Link>
           </div>

@@ -5,7 +5,7 @@ import CustomInput from "../../components/common/custom-input";
 import CustomSelect from "../../components/common/custom-select";
 import CustomActionButton from "../../components/common/custom-action-buttons";
 import CustomFileUploader from "../../components/common/custom-file-uploader";
-import { Gender, clubTypes, battingStyleOptions, bowlingStyleOptions, teamTypeOptions, playingRoleOptions} from "./enum";
+import { Gender,  battingStyleOptions, bowlingStyleOptions, teamTypeOptions, playingRoleOptions} from "../../components/Enum/enum";
 
 const AddPlayerForm = ({ showForm }) => {
   const [form] = Form.useForm();

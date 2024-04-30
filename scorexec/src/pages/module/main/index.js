@@ -8,6 +8,7 @@ import AddPlayerForm from "../../players/create-edit-player";
 import DrawerSideBar from "../../../components/common/custom-sidebar/sidebar";
 import AddOrEditTeamForm from "../../teams/create-edit-team";
 import Matches from "../../matches";
+import AddOrEditMatchForm from "../../matches/create-edit-match";
 const { Header, Content } = Layout;
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -56,6 +57,8 @@ const App = () => {
             <Route path="create-player" element={<AddPlayerForm />} />
             <Route path="create-team" element={<AddOrEditTeamForm />} />
             <Route path="match" element={<Matches/>}/>
+            <Route path="create-match" element={<AddOrEditMatchForm/>} />
+
           </Routes>
         </Content>
       </Layout>

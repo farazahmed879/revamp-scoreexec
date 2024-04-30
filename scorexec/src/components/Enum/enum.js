@@ -38,3 +38,21 @@ export const bowlingStyleOptions = [
     { id: 3, name: 'All-Rounder' },
     { id: 4, name: 'Wicket-Keepr Batsman' },
   ];
+
+  export const matchTypes = [
+    { id: 1, name: 'Tournament' },
+    { id: 2, name: 'Series' },
+    { id: 3, name: 'Friendly' },
+  ];
+  export const team01 = [
+    { id: 1, name: 'Pakistan' },
+    { id: 2, name: 'India' },
+    { id: 3, name: 'Nepal' },
+    { id: 3, name: 'Palestine' },
+  ];
+  export const Ground = [
+    { id: 1, name: 'RCB' },
+    { id: 2, name: 'Gulzar' },
+    { id: 3, name: 'Chitai' },
+    { id: 3, name: 'Rafay-aam' },
+  ];
