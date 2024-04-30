@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Form, Row, Col } from "antd";
+import { Form, Row, Col, Select } from "antd";
 import "./AddPlayerForm.css";
 import CustomInput from "../../components/common/custom-input";
 import CustomSelect from "../../components/common/custom-select";
 import CustomActionButton from "../../components/common/custom-action-buttons";
 import CustomFileUploader from "../../components/common/custom-file-uploader";
+import { Gender, clubTypes, battingStyleOptions, bowlingStyleOptions, teamTypeOptions, playingRoleOptions} from "./enum";
 
 const AddPlayerForm = ({ showForm }) => {
   const [form] = Form.useForm();
@@ -18,28 +19,21 @@ const AddPlayerForm = ({ showForm }) => {
     setFileList(fileList);
   };
 
-  const handleGalleryChange = ({fileList: newFileList}) => {
-
+  const handleGalleryChange = ({ fileList: newFileList }) => {
     setGalleryFileList(newFileList);
-
   };
 
   const onFinish = (values) => {
     console.log("Received values:", values);
     //  form  will be here
   };
-  const clubTypes = [
-    { id: 1, label: "Local", value: 1 },
-    { id: 2, label: "Club", value: 2 },
-    { id: 3, label: "International", value: 3 },
-  ];
 
   return (
     <div>
       <h2>Add Player</h2>
       <Form form={form} layout="vertical" onFinish={onFinish}>
         <Form.Item
-          label="Picture *"
+          label="Picture"
           name="picture"
           rules={[{ required: true, message: "Please upload a picture!" }]}
         >
@@ -52,7 +46,7 @@ const AddPlayerForm = ({ showForm }) => {
         <Row gutter={16}>
           <Col span={12}>
             <Form.Item
-              label="Name *"
+              label="Name"
               name="name"
               placeholder="Enter your name"
               rules={[{ required: true, message: "Please enter the name!" }]}
@@ -61,33 +55,84 @@ const AddPlayerForm = ({ showForm }) => {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Zone" name="zone">
-              <CustomInput type="number" placeholder="Enter your number" />
+            <Form.Item label="Gender" name="Gender">
+            <Select
+                options={Gender.map((type) => ({
+                  label: type.label,
+                  value: type.value,
+                }))}
+              />
             </Form.Item>
           </Col>
         </Row>
 
         <Row gutter={16}>
           <Col span={12}>
-            <Form.Item label="Yaad ni arha" name="name">
-              <CustomSelect value="" placeholder="Enter your yaad ni aarha" />
+            <Form.Item label="Team" name="team">
+              <Select
+                options={teamTypeOptions.map((type) => ({
+                  label: type.name,
+                  value: type.name,
+                }))}
+              />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Role" name="zone">
-              <CustomInput type="option" placeholder="Select your role" />
+            <Form.Item label="Player Role" name="Player Role">
+            <Select
+                options={battingStyleOptions.map((type) => ({
+                  label: type.label,
+                  value: type.value,
+                }))}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="Batting Style" name="Batting Style">
+            <Select
+                options={playingRoleOptions.map((type) => ({
+                  label: type.label,
+                  value: type.value,
+                }))}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="Bowling Style" name="Bowling Style">
+            <Select
+                options={bowlingStyleOptions.map((type) => ({
+                  label: type.name,
+                  value: type.name,
+                }))}
+              />
             </Form.Item>
           </Col>
         </Row>
         <Row gutter={16}>
           <Col span={12}>
-            <Form.Item label="City" name="name">
-              <CustomInput value="text" placeholder="Enter your city" />
+            <Form.Item
+              label="Contact"
+              name="name"
+              rules={[{ required: true, message: "Contact must contain 11 numbers!" }]}
+            >
+              <CustomInput type="number" placeholder="Enter your Contact" />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Area" name="zone">
-              <CustomInput type="text" placeholder="Enter your Area" />
+            <Form.Item label="CNIC" name="zone">
+              <CustomInput type="number" placeholder="Enter your CNIC Number" />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item label="Birth" name="name">
+              <CustomInput type="date" placeholder="Enter your Birhthdate" />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="Address" name="zone">
+              <CustomInput type="text" placeholder="Enter your Address" />
             </Form.Item>
           </Col>
         </Row>
@@ -109,4 +154,3 @@ const AddPlayerForm = ({ showForm }) => {
 };
 
 export default AddPlayerForm;
-

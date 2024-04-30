@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { Form, Row, Col } from "antd";
+import { Form, Row, Col, Select } from "antd";
 import "./team.css";
-import CustomInput from "../../components/common/custom-input";
-import CustomSelect from "../../components/common/custom-select";
-import CustomActionButton from "../../components/common/custom-action-buttons";
-import CustomFileUploader from "../../components/common/custom-file-uploader";
+import CustomInput from "../../../components/common/custom-input";
+import CustomSelect from "../../../components/common/custom-select";
+import CustomActionButton from "../../../components/common/custom-action-buttons";
+import CustomFileUploader from "../../../components/common/custom-file-uploader";
 
-const AddTeamForm = ({ showForm }) => {
+const AddOrEditTeamForm = ({ ShowForm }) => {
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
+
+  const [galleryfileList, setGalleryFileList] = useState([]);
 
   const handleChange = (info) => {
     let fileList = [...info.fileList];
@@ -16,6 +18,9 @@ const AddTeamForm = ({ showForm }) => {
     setFileList(fileList);
   };
 
+  const handleGalleryChange = ({ fileList: newFileList }) => {
+    setGalleryFileList(newFileList);
+  };
   const onFinish = (values) => {
     console.log("Received values:", values);
     //  form  will be here
@@ -67,7 +72,9 @@ const AddTeamForm = ({ showForm }) => {
           </Col>
           <Col span={12}>
             <Form.Item label="Role" name="zone">
-              <CustomInput type="option" placeholder="Select your role" />
+              <Select>
+                    <Select options={clubTypes.map(type => ({ label: type.label, value: type.value }))} />
+              </Select>
             </Form.Item>
           </Col>
         </Row>
@@ -83,6 +90,15 @@ const AddTeamForm = ({ showForm }) => {
             </Form.Item>
           </Col>
         </Row>
+        <Row gutter={16}>
+          <CustomFileUploader
+            fileList={galleryfileList}
+            handleChange={handleGalleryChange}
+            listType="picture-card"
+            maxCount={25}
+            multiple={true}
+          />
+        </Row>
         <Form.Item>
           <div className="form-buttons">
             <CustomActionButton />
@@ -93,17 +109,7 @@ const AddTeamForm = ({ showForm }) => {
   );
 };
 
-export default AddTeamForm;
+export default AddOrEditTeamForm;
 
-{
-  /* <Select>
-            <Option value="Local">Local</Option>
-            <Option value="Club">Club</Option>
-            <Option value="Multi-National">Multi-National</Option>
-            <Option value="Departmental">Departmental</Option>
-            <Option value="School">School</Option>
-            <Option value="College">College</Option>
-            <Option value="University">University</Option>
-            <Option value="Office">Office</Option>
-          </Select> */
-}
+
+

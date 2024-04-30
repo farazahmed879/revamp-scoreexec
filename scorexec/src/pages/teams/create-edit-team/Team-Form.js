@@ -1,11 +1,14 @@
-import React , { useState }from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import CustomButton from "../../components/common/custom-button";
-import CustomGrid from "../../components/common/custom-grid";
-import CustomSpace from "../../components/common/custom-space";
-import CustomTag from "../../components/common/custom-tag";
+import AddOrEditTeamForm from "../create-edit-team/index";
+import CustomButton from "../../../components/common/custom-button";
+import CustomGrid from "../../../components/common/custom-grid";
+import CustomSpace from "../../../components/common/custom-space";
+import CustomTag from "../../../components/common/custom-tag";
+
 const Team = () => {
-    const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+
   const toggleForm = () => {
     setShowForm(!showForm);
   };
@@ -58,6 +61,7 @@ const Team = () => {
       ),
     },
   ];
+  
   const data = [
     {
       key: "1",
@@ -65,30 +69,20 @@ const Team = () => {
       age: 32,
       address: "New York No. 1 Lake Park",
       tags: ["nice", "developer"],
-    },
-    {
-      key: "2",
-      name: "Jim Green",
-      age: 42,
-      address: "London No. 1 Lake Park",
-      tags: ["loser"],
-    },
-    {
-      key: "3",
-      name: "Joe Black",
-      age: 32,
-      address: "Sydney No. 1 Lake Park",
-      tags: ["cool", "teacher"],
-    },
+    }
   ];
 
-  return <>
-  <div style={{ textAlign: "right", marginBottom: "10px" }}>
-  <Link to="/create-team">
-    <CustomButton onClick={toggleForm}>Add</CustomButton> 
-    </Link>
-  </div>
-  <CustomGrid columns={columns} data={data} />
-</>
+  return (
+    <>
+      <div style={{ textAlign: "right", marginBottom: "10px" }}>
+      <Link to="/create-team">
+        <CustomButton onClick={toggleForm}>Add</CustomButton>
+        </Link>
+      </div>
+      {showForm && <AddOrEditTeamForm />}
+      <CustomGrid columns={columns} data={data} />
+    </>
+  );
 };
-export default Team
+
+export default Team;

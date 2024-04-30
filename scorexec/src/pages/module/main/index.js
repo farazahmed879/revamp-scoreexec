@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { Route, Routes } from "react-router-dom";
-import Team from "../../teams";
+import Team from "../../teams/create-edit-team/Team-Form";
 import Players from "../../players";
 import AddPlayerForm from "../../players/create-edit-player";
 import DrawerSideBar from "../../../components/common/custom-sidebar/sidebar";
+import AddOrEditTeamForm from "../../teams/create-edit-team";
 const { Header, Content } = Layout;
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -52,6 +53,7 @@ const App = () => {
             <Route path="team" element={<Team />} />
             <Route path="player" element={<Players />} />
             <Route path="create-player" element={<AddPlayerForm />} />
+            <Route path="create-team" element={<AddOrEditTeamForm />} />
           </Routes>
         </Content>
       </Layout>
