@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-//import AddPlayerForm from "./create-edit-player";
+import AddPlayerForm from "./create-edit-player";
 import CustomGrid from "../../components/common/custom-grid";
 import CustomButton from "../../components/common/custom-button";
 import CustomTag from "../../components/common/custom-tag";

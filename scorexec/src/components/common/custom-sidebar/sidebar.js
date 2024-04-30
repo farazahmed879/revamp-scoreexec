@@ -11,20 +11,20 @@ import {
   MenuOutlined,
   CloseCircleOutlined,
   BulbOutlined,
+  CustomerServiceOutlined
 } from "@ant-design/icons";
 import "antd/dist/reset.css";
 import "./sidebar.css";
 import CustomButton from "../custom-button";
+import Logo from "../../../utils/constant";
 
 const { Sider } = Layout;
 
-const Sidebar = ({ collapsed = false }) => {
+const Sidebar = ( {collapsed=false}) => {
   const [visible, setVisible] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
-  const showDrawer = () => {
-    setVisible(true);
-  };
+  
 
   const onClose = () => {
     setVisible(false);
@@ -36,7 +36,9 @@ const Sidebar = ({ collapsed = false }) => {
 
   return (
     <ConfigProvider theme={darkMode ? "dark" : "light"}>
-      <Sider
+      
+        <div className="demo-logo-vertical" />
+        <Sider
         trigger={null}
         collapsible
         collapsed={collapsed}
@@ -51,13 +53,16 @@ const Sidebar = ({ collapsed = false }) => {
         bodyStyle={{ paddingBottom: 80 }}
         footer={
           <div style={{ textAlign: "right" }}>
-            <CustomButton onClick={""} type="primary">
+            <CustomButton onClick={''} type="primary">
               Log Out
             </CustomButton>
           </div>
         }
       >
-        <div className="demo-logo-vertical" />
+        <>
+        <div className="container-fluid">
+        <a href="logo"><Logo/></a>
+        </div>
         <Menu
           theme="dark"
           mode="inline"
@@ -84,6 +89,9 @@ const Sidebar = ({ collapsed = false }) => {
           //   },
           //]}
         >
+          <Menu.Item key="0" icon={<CustomerServiceOutlined />}>
+            <Link to="/Admin">Admin</Link>
+          </Menu.Item>
           <Menu.Item key="1" icon={<ProjectOutlined />}>
             <Link to="/Dashboard">Dashboard</Link>
           </Menu.Item>
@@ -108,10 +116,19 @@ const Sidebar = ({ collapsed = false }) => {
             About
             <Link to="/About"></Link>
           </Menu.Item>
+          <Menu.Item key="8" icon={<MenuOutlined />}>
+            Multi Level Menu
+            <Link to="/Multi-Level-Menu"></Link>
+          </Menu.Item>
         </Menu>
+        </>
       </Sider>
     </ConfigProvider>
   );
 };
 
 export default Sidebar;
+
+
+
+
