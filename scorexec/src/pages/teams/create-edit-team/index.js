@@ -5,6 +5,7 @@ import CustomInput from "../../../components/common/custom-input";
 import CustomSelect from "../../../components/common/custom-select";
 import CustomActionButton from "../../../components/common/custom-action-buttons";
 import CustomFileUploader from "../../../components/common/custom-file-uploader";
+import { teamtypeOptions } from "../../../components/Enum/enum";
 
 const AddOrEditTeamForm = ({ ShowForm }) => {
   const [form] = Form.useForm();
@@ -25,11 +26,6 @@ const AddOrEditTeamForm = ({ ShowForm }) => {
     console.log("Received values:", values);
     //  form  will be here
   };
-  const clubTypes = [
-    { id: 1, label: "Local", value: 1 },
-    { id: 2, label: "Club", value: 2 },
-    { id: 3, label: "International", value: 3 },
-  ];
 
   return (
     <div>
@@ -66,15 +62,13 @@ const AddOrEditTeamForm = ({ ShowForm }) => {
 
         <Row gutter={16}>
           <Col span={12}>
-            <Form.Item label="Yaad ni arha" name="name">
-              <CustomSelect value="" placeholder="Enter your yaad ni aarha" />
+            <Form.Item label="Contact" name="cont">
+              <CustomInput value="number" placeholder="Enter your Contact Number" />
             </Form.Item>
           </Col>
           <Col span={12}>
             <Form.Item label="Role" name="zone">
-              <Select>
-                    <Select options={clubTypes.map(type => ({ label: type.label, value: type.value }))} />
-              </Select>
+              <CustomSelect options={teamtypeOptions}/>
             </Form.Item>
           </Col>
         </Row>

@@ -9,6 +9,8 @@ import DrawerSideBar from "../../../components/common/custom-sidebar/sidebar";
 import AddOrEditTeamForm from "../../teams/create-edit-team";
 import Matches from "../../matches";
 import AddOrEditMatchForm from "../../matches/create-edit-match";
+import AddOrEditTenantForm from "../../Tenants/Custom-Tenants/index-Form";
+import Tenant from "../../Tenants/Custom-Tenants";
 const { Header, Content } = Layout;
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -53,11 +55,13 @@ const App = () => {
         >
           <Routes>
             <Route path="team" element={<Team />} />
+            <Route path="create-team" element={<AddOrEditTeamForm />} />
             <Route path="player" element={<Players />} />
             <Route path="create-player" element={<AddPlayerForm />} />
-            <Route path="create-team" element={<AddOrEditTeamForm />} />
             <Route path="match" element={<Matches/>}/>
             <Route path="create-match" element={<AddOrEditMatchForm/>} />
+            <Route path="tenants" element={<Tenant/>}/>
+            <Route path="create-tenant" element={<AddOrEditTenantForm/>} />
 
           </Routes>
         </Content>

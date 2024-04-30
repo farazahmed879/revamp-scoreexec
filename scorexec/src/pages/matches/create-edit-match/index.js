@@ -44,13 +44,8 @@ const AddOrEditMatchForm = ({ ShowForm }) => {
         </Form.Item>
         <Row gutter={16}>
           <Col span={12}>
-            <Form.Item label="Match type" name="team01">
-              <Select
-                options={matchTypes.map((type) => ({
-                  label: type.name,
-                  value: type.name,
-                }))}
-              />
+            <Form.Item label="Match type" name="matchType">
+            <CustomSelect options={matchTypes} />
             </Form.Item>
           </Col>
         </Row>
@@ -58,32 +53,17 @@ const AddOrEditMatchForm = ({ ShowForm }) => {
         <Row gutter={16}>
           <Col span={12}>
             <Form.Item label="Team 01" name="team01">
-              <Select
-                options={team01.map((type) => ({
-                  label: type.name,
-                  value: type.name,
-                }))}
-              />
+            <CustomSelect options={team01} />
             </Form.Item>
           </Col>
           <Col span={12}>
             <Form.Item label="Team 02" name="team02">
-              <Select
-                options={team01.map((type) => ({
-                  label: type.name,
-                  value: type.name,
-                }))}
-              />
+            <CustomSelect options={team01} />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Ground" name="Batting Style">
-              <Select
-                options={Ground.map((type) => ({
-                  label: type.name,
-                  value: type.name,
-                }))}
-              />
+            <Form.Item label="Ground" name="ground">
+            <CustomSelect options={Ground} />
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -131,7 +111,9 @@ const AddOrEditMatchForm = ({ ShowForm }) => {
           />
         </Row>
         <Form.Item>
+        <div className="form-buttons">
           <CustomActionButton />
+          </div>
         </Form.Item>
       </Form>
     </div>

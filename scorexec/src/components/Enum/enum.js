@@ -22,7 +22,7 @@ export const bowlingStyleOptions = [
     { id: 8, name: 'left-arm orthodox' },
     { id: 9, name: 'left-arm china-man' },
   ];
-  export const teamTypeOptions = [
+  export const teamtypeOptions = [
     { id: 1, name: 'Local' },
     { id: 2, name: 'Club' },
     { id: 3, name: 'Multi-National' },
