@@ -100,8 +100,11 @@ const Sidebar = ( {collapsed=false}) => {
           </Menu.Item>
           <Menu.Item key="3" icon={<UserOutlined />}>
             <Link to="/player">Players</Link>
+            </Menu.Item>
+            <Menu.Item key="4" icon={<UserOutlined />}>
+            <Link to="/match">Matches</Link>
           </Menu.Item>
-          <Menu.Item key="4" icon={<TeamOutlined />}>
+          <Menu.Item key="10" icon={<TeamOutlined />}>
             <Link to="/Tenants">Tenants</Link>
           </Menu.Item>
           <Menu.Item key="5" icon={<UserOutlined />}>
