@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { Form, Row, Col, Checkbox } from "antd";
+import React from "react";
+import { Form,  Col, Checkbox } from "antd";
 //import "./team.css";
 import CustomInput from "../../../components/common/custom-input";
 import CustomActionButton from "../../../components/common/custom-action-buttons";
 
 const AddOrEditTenantForm = ({ ShowForm }) => {
   const [form] = Form.useForm();
-  const [fileList, setFileList] = useState([]);
 
 
  
@@ -21,7 +20,8 @@ const AddOrEditTenantForm = ({ ShowForm }) => {
       <Form
         form={form}
         layout="horizontal"
-        onFinish={onFinish}
+        onFinish={onFinish
+        }
         style={{ marginBottom: 5 }}
       >
         <Form.Item
