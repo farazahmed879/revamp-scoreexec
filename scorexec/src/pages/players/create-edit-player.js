@@ -5,7 +5,7 @@ import CustomInput from "../../components/common/custom-input";
 import CustomSelect from "../../components/common/custom-select";
 import CustomActionButton from "../../components/common/custom-action-buttons";
 import CustomFileUploader from "../../components/common/custom-file-uploader";
-import { Gender, clubTypes, battingStyleOptions, bowlingStyleOptions, teamTypeOptions, playingRoleOptions} from "./enum";
+import { Gender,  battingStyleOptions, bowlingStyleOptions, teamtypeOptions, playingRoleOptions} from "../../components/Enum/enum";
 
 const AddPlayerForm = ({ showForm }) => {
   const [form] = Form.useForm();
@@ -56,12 +56,7 @@ const AddPlayerForm = ({ showForm }) => {
           </Col>
           <Col span={12}>
             <Form.Item label="Gender" name="Gender">
-            <Select
-                options={Gender.map((type) => ({
-                  label: type.label,
-                  value: type.value,
-                }))}
-              />
+            <CustomSelect options={Gender}/>
             </Form.Item>
           </Col>
         </Row>
@@ -69,32 +64,22 @@ const AddPlayerForm = ({ showForm }) => {
         <Row gutter={16}>
           <Col span={12}>
             <Form.Item label="Team" name="team">
-              <Select
-                options={teamTypeOptions.map((type) => ({
-                  label: type.name,
-                  value: type.name,
-                }))}
-              />
+            <CustomSelect options={teamtypeOptions}/>
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Batting Style" name="Player Role">
+            <Form.Item label="Player Role" name="Player Role">
             <CustomSelect options={battingStyleOptions}/>
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Player Role" name="Batting Style">
+            <Form.Item label="Batting Style" name="Batting Style">
             <CustomSelect options={playingRoleOptions}/>
             </Form.Item>
           </Col>
           <Col span={12}>
             <Form.Item label="Bowling Style" name="Bowling Style">
-            <Select
-                options={bowlingStyleOptions.map((type) => ({
-                  label: type.name,
-                  value: type.name,
-                }))}
-              />
+            <CustomSelect options={bowlingStyleOptions}/>
             </Form.Item>
           </Col>
         </Row>
@@ -137,8 +122,7 @@ const AddPlayerForm = ({ showForm }) => {
         </Row>
         <Form.Item>
         <div className="form-buttons">
-        <CustomActionButton value="Add"/>
-          <CustomActionButton value="Cancel" />
+          <CustomActionButton />
           </div>
         </Form.Item>
       </Form>

@@ -1,21 +1,21 @@
-import CustomButton from "../custom-button";
-//import { useNavigate } from "react-router-dom"
+//import CustomButton from "../custom-button";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Button } from "antd"
 
-const CustomActionButton = ({
-  title1="Add",
-  title2="Cancel",
-  handleClickBack,
-  handleSubmit,
-}) => {
+
+const CustomActionButton = ({ value, onClick }) => {
   return (
-    <>
-      {/* <CustomButton onClick={useNavigate}>{""}
-        </CustomButton> */}
-      <CustomButton type="submit" onClick={handleSubmit}>
-        {title1}
-      </CustomButton>
-      <CustomButton onClick={handleClickBack}>{title2}</CustomButton>
-    </>
+    <Button style={{ marginRight: '10px', marginBottom:"10px" }}onClick={onClick}>
+      {value}
+    </Button>
   );
 };
+
+CustomActionButton.propTypes = {
+  value: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};
+
 export default CustomActionButton;
+

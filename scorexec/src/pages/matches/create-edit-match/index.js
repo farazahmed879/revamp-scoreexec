@@ -112,8 +112,7 @@ const AddOrEditMatchForm = ({ ShowForm }) => {
         </Row>
         <Form.Item>
         <div className="form-buttons">
-        <CustomActionButton value="Add"/>
-          <CustomActionButton value="Cancel" />
+          <CustomActionButton />
           </div>
         </Form.Item>
       </Form>
