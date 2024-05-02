@@ -78,23 +78,13 @@ const AddPlayerForm = ({ showForm }) => {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Player Role" name="Player Role">
-            <Select
-                options={battingStyleOptions.map((type) => ({
-                  label: type.label,
-                  value: type.value,
-                }))}
-              />
+            <Form.Item label="Batting Style" name="Player Role">
+            <CustomSelect options={battingStyleOptions}/>
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Batting Style" name="Batting Style">
-            <Select
-                options={playingRoleOptions.map((type) => ({
-                  label: type.label,
-                  value: type.value,
-                }))}
-              />
+            <Form.Item label="Player Role" name="Batting Style">
+            <CustomSelect options={playingRoleOptions}/>
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -146,7 +136,10 @@ const AddPlayerForm = ({ showForm }) => {
           />
         </Row>
         <Form.Item>
-          <CustomActionButton />
+        <div className="form-buttons">
+        <CustomActionButton value="Add"/>
+          <CustomActionButton value="Cancel" />
+          </div>
         </Form.Item>
       </Form>
     </div>
