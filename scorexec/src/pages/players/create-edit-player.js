@@ -73,7 +73,7 @@ const AddPlayerForm = ({ showForm }) => {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Batting Style" name="Batting Style">
+            <Form.Item label="Player Role" name="Batting Style">
             <CustomSelect options={playingRoleOptions}/>
             </Form.Item>
           </Col>
