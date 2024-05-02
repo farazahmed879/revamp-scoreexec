@@ -16,8 +16,7 @@
     margin-bottom: 5px;
   }
   
-  input[type='text'],
-  input[type='number'],
+
   select {
     width: 100%;
     padding: 8px;
@@ -32,6 +31,7 @@
   .form-buttons {
     display: flex;
     justify-content: right;
+    color: white;
   }
   
   button {
