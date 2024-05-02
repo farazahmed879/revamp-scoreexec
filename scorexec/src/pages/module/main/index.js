@@ -11,6 +11,10 @@ import Matches from "../../matches";
 import AddOrEditMatchForm from "../../matches/create-edit-match";
 import AddOrEditTenantForm from "../../Tenants/Custom-Tenants/index-Form";
 import Tenant from "../../Tenants/Custom-Tenants";
+import Role from "../../Roles/Roles-Components";
+import AddOrUpdateRoleForm from "../../Roles/Roles-Components/CreateorUpdateRole";
+import AddUsers from "../../Users/Users-Components";
+import AddOrUpdateUserForm from "../../Users/Users-Components/AddUsers";
 const { Header, Content } = Layout;
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -62,6 +66,10 @@ const App = () => {
             <Route path="create-match" element={<AddOrEditMatchForm/>} />
             <Route path="tenants" element={<Tenant/>}/>
             <Route path="create-tenant" element={<AddOrEditTenantForm/>} />
+            <Route path="roles" element={<Role/>}/>
+            <Route path="create-role" element={<AddOrUpdateRoleForm/>} />
+            <Route path="users" element={<AddUsers/>}/>
+            <Route path="create-users" element={<AddOrUpdateUserForm/>} />
 
           </Routes>
         </Content>
