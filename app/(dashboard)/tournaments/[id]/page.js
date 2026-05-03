@@ -55,10 +55,15 @@ export default function TournamentProfilePage() {
 
   return (
     <div className={styles.container}>
-      <PageHeader 
-        title={profile.name} 
-        description={profile.description || 'Tournament Details'}
-      />
+      <div className={styles.headerWithLogo}>
+        {profile.logoUrl && (
+          <img src={profile.logoUrl} alt={profile.name} className={styles.headerLogo} />
+        )}
+        <PageHeader 
+          title={profile.name} 
+          description={`${profile.type} • ${profile.description || 'Tournament Details'}`}
+        />
+      </div>
 
       {/* Tab Navigation */}
       <div className={styles.tabContainer}>

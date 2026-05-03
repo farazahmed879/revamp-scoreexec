@@ -66,78 +66,96 @@ export default function CreatePlayerPage() {
   );
 
   return (
-    <>
+    <div className={styles.container}>
       <PageHeader title="Add Player" description="Create a new player profile" />
 
-      <Card hover={false}>
+      <Card hover={false} className="glass">
         <CardBody>
           <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.row}>
-              <Input
-                label="First Name"
-                name="firstName"
-                placeholder="Enter first name"
-                value={values.firstName}
-                onChange={handleChange}
-                error={errors.firstName}
-                required
-              />
-              <Input
-                label="Last Name"
-                name="lastName"
-                placeholder="Enter last name"
-                value={values.lastName}
-                onChange={handleChange}
-                error={errors.lastName}
-                required
-              />
-            </div>
+            <section className={styles.section}>
+              <div className={styles.sectionHeader}>
+                <span className={styles.sectionIcon}>👤</span>
+                <h3 className={styles.sectionTitle}>Personal Details</h3>
+              </div>
+              <div className={styles.grid}>
+                <Input
+                  label="First Name"
+                  name="firstName"
+                  placeholder="Enter first name"
+                  value={values.firstName}
+                  onChange={handleChange}
+                  error={errors.firstName}
+                  required
+                />
+                <Input
+                  label="Last Name"
+                  name="lastName"
+                  placeholder="Enter last name"
+                  value={values.lastName}
+                  onChange={handleChange}
+                  error={errors.lastName}
+                  required
+                />
+                <Input
+                  label="Jersey Number"
+                  name="jerseyNumber"
+                  type="number"
+                  placeholder="e.g. 7"
+                  value={values.jerseyNumber}
+                  onChange={handleChange}
+                />
+              </div>
+            </section>
 
-            <div className={styles.row}>
-              <Input
-                label="Jersey Number"
-                name="jerseyNumber"
-                type="number"
-                placeholder="e.g. 7"
-                value={values.jerseyNumber}
-                onChange={handleChange}
-              />
-              <Select
-                label="Batting Style"
-                name="battingStyle"
-                options={battingStyleOptions}
-                value={values.battingStyle}
-                onChange={setFieldValue}
-              />
-            </div>
+            <section className={styles.section}>
+              <div className={styles.sectionHeader}>
+                <span className={styles.sectionIcon}>🏏</span>
+                <h3 className={styles.sectionTitle}>Playing Style</h3>
+              </div>
+              <div className={styles.grid}>
+                <Select
+                  label="Batting Style"
+                  name="battingStyle"
+                  options={battingStyleOptions}
+                  value={values.battingStyle}
+                  onChange={setFieldValue}
+                />
+                <Select
+                  label="Bowling Style"
+                  name="bowlingStyle"
+                  options={bowlingStyleOptions}
+                  value={values.bowlingStyle}
+                  onChange={setFieldValue}
+                />
+              </div>
+            </section>
 
-            <div className={styles.row}>
-              <Select
-                label="Bowling Style"
-                name="bowlingStyle"
-                options={bowlingStyleOptions}
-                value={values.bowlingStyle}
-                onChange={setFieldValue}
-              />
-              <MultiSelect
-                label="Teams"
-                name="teamIds"
-                placeholder={loadingTeams ? 'Loading teams...' : 'Select teams'}
-                options={teamOptions}
-                value={values.teamIds}
-                onChange={setFieldValue}
-              />
-            </div>
+            <section className={styles.section}>
+              <div className={styles.sectionHeader}>
+                <span className={styles.sectionIcon}>🛡️</span>
+                <h3 className={styles.sectionTitle}>Team Affiliations</h3>
+              </div>
+              <div className={styles.fullWidth}>
+                <MultiSelect
+                  label="Teams"
+                  name="teamIds"
+                  placeholder={loadingTeams ? 'Loading teams...' : 'Select teams'}
+                  options={teamOptions}
+                  value={values.teamIds}
+                  onChange={setFieldValue}
+                />
+              </div>
+            </section>
 
             <div className={styles.actions}>
-              <Button variant="ghost" onClick={() => router.back()}>Cancel</Button>
-              <Button type="submit" variant="primary" loading={submitting}>
+              <Button variant="ghost" onClick={() => router.back()} type="button">Cancel</Button>
+              <Button type="submit" variant="primary" loading={submitting} icon="👤">
                 Create Player
               </Button>
             </div>
           </form>
         </CardBody>
       </Card>
-    </>
+    </div>
   );
 }

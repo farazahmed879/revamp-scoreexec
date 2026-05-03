@@ -8,12 +8,14 @@ import PageHeader from '@/components/layout/PageHeader';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import Card, { CardBody } from '@/components/ui/Card';
+import ImageUpload from '@/components/ui/ImageUpload';
+import styles from './create.module.css';
 
 export default function CreateTeamPage() {
   const router = useRouter();
   const { showToast } = useToast();
 
-  const { values, errors, submitting, handleChange, handleSubmit } = useForm(
+  const { values, errors, submitting, handleChange, handleSubmit, setFieldValue } = useForm(
     { name: '', logoUrl: '', homeColor: '#3b82f6', awayColor: '#ef4444' },
     async (vals) => {
       try {
@@ -33,26 +35,62 @@ export default function CreateTeamPage() {
   );
 
   return (
-    <>
-      <PageHeader title="Add Team" description="Create a new team" />
-      <Card hover={false}>
+    <div className={styles.container}>
+      <PageHeader title="Add Team" description="Create a new team for competition" />
+      <Card hover={false} className="glass">
         <CardBody>
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)', maxWidth: 720 }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-lg)' }}>
-              <Input label="Team Name" name="name" placeholder="Enter team name" value={values.name} onChange={handleChange} error={errors.name} required />
-              <Input label="Logo URL" name="logoUrl" placeholder="https://..." value={values.logoUrl} onChange={handleChange} />
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-lg)' }}>
-              <Input label="Home Color" name="homeColor" type="color" value={values.homeColor} onChange={handleChange} />
-              <Input label="Away Color" name="awayColor" type="color" value={values.awayColor} onChange={handleChange} />
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, paddingTop: 'var(--space-md)', borderTop: '1px solid var(--border-default)' }}>
-              <Button variant="ghost" onClick={() => router.back()}>Cancel</Button>
-              <Button type="submit" variant="primary" loading={submitting}>Create Team</Button>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <section className={styles.section}>
+              <div className={styles.sectionHeader}>
+                <span className={styles.sectionIcon}>🛡️</span>
+                <h3 className={styles.sectionTitle}>Team Profile</h3>
+              </div>
+              <div className={styles.grid}>
+                <ImageUpload 
+                  label="Team Logo" 
+                  value={values.logoUrl} 
+                  onChange={(val) => setFieldValue('logoUrl', val)} 
+                  placeholder="Upload Logo"
+                />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+                  <Input 
+                    label="Team Name" 
+                    name="name" 
+                    placeholder="e.g. Mumbai Indians" 
+                    value={values.name} 
+                    onChange={handleChange} 
+                    error={errors.name} 
+                    required 
+                  />
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)' }}>
+                    <Input 
+                      label="Home Color" 
+                      name="homeColor" 
+                      type="color" 
+                      value={values.homeColor} 
+                      onChange={handleChange} 
+                    />
+                    <Input 
+                      label="Away Color" 
+                      name="awayColor" 
+                      type="color" 
+                      value={values.awayColor} 
+                      onChange={handleChange} 
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div className={styles.actions}>
+              <Button variant="ghost" onClick={() => router.back()} type="button">Cancel</Button>
+              <Button type="submit" variant="primary" loading={submitting} icon="🛡️">
+                Create Team
+              </Button>
             </div>
           </form>
         </CardBody>
       </Card>
-    </>
+    </div>
   );
 }

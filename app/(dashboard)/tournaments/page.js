@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useApi } from '@/hooks/useApi';
 import { useToast } from '@/hooks/useToast';
 import { tournamentsService } from '@/services/tournamentsService';
-import { getSportLabel, getTournamentStatusLabel } from '@/constants/enums';
+import { getSportLabel, getTournamentStatusLabel, getTournamentTypeLabel } from '@/constants/enums';
 import PageHeader from '@/components/layout/PageHeader';
 import Button from '@/components/ui/Button';
 import EntityCard, { EntityGrid } from '@/components/ui/EntityCard';
@@ -61,12 +61,12 @@ export default function TournamentsPage() {
         </div>
       ) : (
         <EntityGrid>
-          {tournaments.map((t) => (
+          {tournaments?.map((t) => (
             <EntityCard
               key={t.id}
               title={t.name}
-              subtitle={getSportLabel(t.sport)}
-              image="/images/dummy/tournament.png"
+              subtitle={`${getSportLabel(t.sport)} • ${getTournamentTypeLabel(t.type)}`}
+              image={t.logoUrl || "/images/dummy/tournament.png"}
               status={getTournamentStatusLabel(t.status)}
               statusVariant={statusVariant(t.status)}
               onClick={() => router.push(`/tournaments/${t.id}`)}

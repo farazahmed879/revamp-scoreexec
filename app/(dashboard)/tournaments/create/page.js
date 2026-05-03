@@ -9,7 +9,9 @@ import Input from '@/components/ui/Input';
 import Select from '@/components/ui/Select';
 import Button from '@/components/ui/Button';
 import Card, { CardBody } from '@/components/ui/Card';
-import { sportOptions, tournamentFormatOptions } from '@/constants/enums';
+import ImageUpload from '@/components/ui/ImageUpload';
+import { sportOptions, tournamentFormatOptions, tournamentTypeOptions } from '@/constants/enums';
+import styles from './create.module.css';
 
 export default function CreateTournamentPage() {
   const router = useRouter();
@@ -21,6 +23,8 @@ export default function CreateTournamentPage() {
       description: '', 
       sport: 1, // Default to Cricket
       format: 1, // Default to T20
+      type: 1, // Default to Knockout
+      logoUrl: '',
       startDate: '',
       endDate: '',
       maxTeams: 8
@@ -52,38 +56,43 @@ export default function CreateTournamentPage() {
   );
 
   return (
-    <>
+    <div className={styles.container}>
       <PageHeader 
         title="Create Tournament" 
         description="Launch a new tournament and invite teams" 
       />
-      <div className="animate-fade-in" style={{ maxWidth: 800 }}>
-        <Card hover={false}>
-          <CardBody>
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--space-lg)' }}>
-                <Input 
-                  label="Tournament Name" 
-                  name="name" 
-                  placeholder="e.g. Summer Championship 2024" 
-                  value={values.name} 
-                  onChange={handleChange} 
-                  error={errors.name} 
-                  required 
-                />
-                <Input 
-                  label="Description" 
-                  name="description" 
-                  placeholder="Tell us about the tournament..." 
-                  value={values.description} 
-                  onChange={handleChange} 
-                  error={errors.description}
-                  multiline
-                  rows={3}
-                />
+      
+      <Card hover={false} className="glass">
+        <CardBody>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            {/* Section 1: Basic Info */}
+            <section className={styles.section}>
+              <div className={styles.sectionHeader}>
+                <span className={styles.sectionIcon}>📝</span>
+                <h3 className={styles.sectionTitle}>Basic Information</h3>
               </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-lg)' }}>
+              <div className={styles.grid}>
+                <div style={{ gridColumn: 'span 1' }}>
+                  <ImageUpload 
+                    label="Tournament Logo" 
+                    value={values.logoUrl} 
+                    onChange={(val) => setFieldValue('logoUrl', val)} 
+                    placeholder="Upload Logo"
+                  />
+                </div>
+                <div style={{ gridColumn: 'span 1' }}>
+                  <Input 
+                    label="Tournament Name" 
+                    name="name" 
+                    placeholder="e.g. Summer Championship 2024" 
+                    value={values.name} 
+                    onChange={handleChange} 
+                    error={errors.name} 
+                    required 
+                  />
+                </div>
+              </div>
+              <div className={styles.grid}>
                 <Select 
                   label="Sport" 
                   name="sport" 
@@ -93,16 +102,42 @@ export default function CreateTournamentPage() {
                   required 
                 />
                 <Select 
-                  label="Format" 
+                  label="Tournament Type" 
+                  name="type" 
+                  options={tournamentTypeOptions} 
+                  value={values.type} 
+                  onChange={setFieldValue} 
+                  required 
+                />
+                <Select 
+                  label="Match Format" 
                   name="format" 
                   options={tournamentFormatOptions} 
                   value={values.format} 
                   onChange={setFieldValue} 
                   required 
                 />
+                <Input 
+                  label="Max Participating Teams" 
+                  name="maxTeams" 
+                  type="number" 
+                  min={2}
+                  max={128}
+                  value={values.maxTeams} 
+                  onChange={handleChange} 
+                  error={errors.maxTeams} 
+                  required 
+                />
               </div>
+            </section>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-lg)' }}>
+            {/* Section 2: Schedule */}
+            <section className={styles.section}>
+              <div className={styles.sectionHeader}>
+                <span className={styles.sectionIcon}>📅</span>
+                <h3 className={styles.sectionTitle}>Tournament Schedule</h3>
+              </div>
+              <div className={styles.grid}>
                 <Input 
                   label="Start Date" 
                   name="startDate" 
@@ -122,38 +157,37 @@ export default function CreateTournamentPage() {
                   required 
                 />
               </div>
+            </section>
 
-              <div style={{ maxWidth: '200px' }}>
+            {/* Section 3: Additional Details */}
+            <section className={styles.section}>
+              <div className={styles.sectionHeader}>
+                <span className={styles.sectionIcon}>ℹ️</span>
+                <h3 className={styles.sectionTitle}>Additional Details</h3>
+              </div>
+              <div className={styles.fullWidth}>
                 <Input 
-                  label="Max Teams" 
-                  name="maxTeams" 
-                  type="number" 
-                  min={2}
-                  max={128}
-                  value={values.maxTeams} 
+                  label="Description" 
+                  name="description" 
+                  placeholder="Tell us about the tournament, rules, prizes, etc..." 
+                  value={values.description} 
                   onChange={handleChange} 
-                  error={errors.maxTeams} 
-                  required 
+                  error={errors.description}
+                  multiline
+                  rows={4}
                 />
               </div>
+            </section>
 
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'flex-end', 
-                gap: 'var(--space-md)', 
-                paddingTop: 'var(--space-lg)', 
-                borderTop: '1px solid var(--border-default)',
-                marginTop: 'var(--space-md)'
-              }}>
-                <Button variant="ghost" onClick={() => router.back()}>Cancel</Button>
-                <Button type="submit" variant="primary" loading={submitting}>
-                  Create Tournament
-                </Button>
-              </div>
-            </form>
-          </CardBody>
-        </Card>
-      </div>
-    </>
+            <div className={styles.actions}>
+              <Button variant="ghost" onClick={() => router.back()} type="button">Cancel</Button>
+              <Button type="submit" variant="primary" loading={submitting} icon="🏆">
+                Create Tournament
+              </Button>
+            </div>
+          </form>
+        </CardBody>
+      </Card>
+    </div>
   );
 }

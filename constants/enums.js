@@ -41,6 +41,11 @@ export const tournamentFormatOptions = [
   { value: 4, label: 'Custom' },
 ];
 
+export const tournamentTypeOptions = [
+  { value: 1, label: 'Knockout' },
+  { value: 2, label: 'League' },
+];
+
 
 export const tournamentStatusOptions = [
   { value: 0, label: 'Upcoming' },
@@ -81,6 +86,9 @@ export const getSportLabel = (value) =>
 
 export const getTournamentStatusLabel = (value) =>
   tournamentStatusOptions.find(o => o.value === value)?.label || '—';
+
+export const getTournamentTypeLabel = (value) =>
+  tournamentTypeOptions.find(o => o.value === value)?.label || '—';
 
 export const getMatchStatusLabel = (value) =>
   matchStatusOptions.find(o => o.value === value)?.label || '—';
