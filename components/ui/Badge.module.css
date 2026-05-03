@@ -1,0 +1,40 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+}
+
+.default {
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--text-secondary);
+}
+
+.success {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--text-success);
+}
+
+.danger {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--text-danger);
+}
+
+.warning {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--text-warning);
+}
+
+.info {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--text-accent);
+}
+
+.purple {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+}
